@@ -23,7 +23,7 @@ input[type=search],select{background:#11162a;min-width:180px;color:var(--text)}
 body.show-aside .layout{display:none}
 body.show-aside aside{display:block}
 body:not(.show-aside) aside{display:none}
-.game-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.game-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px; margin-top: 8px;}
 .game-card{border:1px solid rgba(79,125,255,.2);border-radius:14px;background:linear-gradient(180deg,#141a32,#101629);padding:14px;display:grid;gap:10px}
 .scramble-row{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:center}
 .scramble-letters{display:inline-block;padding:10px 12px;border-radius:10px;border:1px dashed rgba(79,125,255,.35);letter-spacing:2px;font-weight:800}
