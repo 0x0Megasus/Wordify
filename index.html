@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Wordify | B1-C2 Vocabulary Studio</title>
+<meta name="description" content="Wordify is a browser-only vocabulary studio with daily words, flashcards, quizzes, and smart lookup. Learn B1-C2 English vocabulary faster." />
+<meta name="keywords" content="Wordify, vocabulary, English learning, B1, B2, C1, C2, flashcards, quiz, word of the day, dictionary" />
+<meta name="author" content="Wordify" />
+<meta name="robots" content="index,follow" />
+<meta name="theme-color" content="#05070d" />
+<link rel="canonical" href="https://example.com/wordify" />
+<meta property="og:site_name" content="Wordify" />
+<meta property="og:title" content="Wordify | B1-C2 Vocabulary Studio" />
+<meta property="og:description" content="Daily words, flashcards, quizzes, and smart lookup for B1-C2 English vocabulary." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://example.com/wordify" />
+<meta property="og:image" content="https://example.com/wordify/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Wordify | B1-C2 Vocabulary Studio" />
+<meta name="twitter:description" content="Daily words, flashcards, quizzes, and smart lookup for B1-C2 English vocabulary." />
+<meta name="twitter:image" content="https://example.com/wordify/og-image.png" />
+<script>
+  // Update canonical + og:url based on the deployed URL (runtime).
+  (function(){
+    var url = location.origin + location.pathname;
+    var canon = document.querySelector('link[rel="canonical"]');
+    if (canon) canon.setAttribute("href", url);
+    var og = document.querySelector('meta[property="og:url"]');
+    if (og) og.setAttribute("content", url);
+  })();
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Wordify","url":"https://example.com/wordify","description":"Wordify is a browser-only vocabulary studio with daily words, flashcards, quizzes, and smart lookup.","inLanguage":"en"}
+</script>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap");
+:root{--bg:#05070d;--bg2:#0b0f1a;--card:#0d1322;--card2:#111a2f;--accent:#00f0ff;--accent2:#ff2bd6;--ok:#11d47a;--danger:#ff4d6d;--text:#e8f6ff;--muted:#86a0b8;--ring:rgba(0,240,255,.35);--shadow:0 14px 34px rgba(0,0,0,.45);--r:16px}
+html{font-size:14px}*{box-sizing:border-box}
+body{margin:0;font-family:"Fira Code",Consolas,monospace;color:var(--text);background:radial-gradient(circle at 8% 0%,rgba(0,240,255,.10),transparent 35%),radial-gradient(circle at 90% 10%,rgba(255,43,214,.10),transparent 30%),linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);min-height:100vh;transition:.3s}
+body.dark{filter:brightness(1.08)}
+.app{max-width:1280px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr 320px;gap:20px}
+header{grid-column:1/-1;background:linear-gradient(135deg,#0d162a,#121d35);color:#fff;border:1px solid rgba(0,240,255,.22);border-radius:var(--r);box-shadow:0 0 0 1px rgba(255,43,214,.15),var(--shadow);padding:20px;position:sticky;top:10px;z-index:2}
+.topbar,.controls,.title-row,.word-row,.word-item .actions{display:flex;flex-wrap:wrap;align-items:center}
+.topbar,.title-row{justify-content:space-between;gap:10px}
+.controls{gap:12px}
+.logo{font-weight:700;letter-spacing:.6px;font-size:1.2rem;text-shadow:0 0 12px rgba(0,240,255,.35)}
+.chip,.btn,select,input[type=search],.mini{border:1px solid rgba(0,240,255,.25);border-radius:12px;padding:10px 12px;font-size:.95rem;font-family:inherit}
+.chip{background:rgba(0,240,255,.10);color:var(--text);cursor:pointer}.chip:hover,.chip.active{background:rgba(0,240,255,.22);box-shadow:0 0 0 2px var(--ring)}
+.btn{background:linear-gradient(90deg,rgba(0,240,255,.25),rgba(255,43,214,.25));color:var(--text);cursor:pointer;font-weight:600}
+.btn.secondary{background:rgba(255,255,255,.08)}
+input[type=search],select{background:#0a1020;min-width:180px;color:var(--text)}
+.layout,aside,.daily-word,.flash-wrap,.saved-list{display:grid;gap:16px}
+.card{background:linear-gradient(180deg,var(--card) 0%,var(--card2) 100%);border:1px solid rgba(0,240,255,.18);border-radius:var(--r);box-shadow:var(--shadow);padding:16px}
+h1,h2,h3,p{margin:0}.muted{color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(3,minmax(90px,1fr));gap:10px;margin-top:12px}
+.stat-box{padding:10px;border-radius:10px;background:rgba(0,240,255,.08);border:1px solid rgba(0,240,255,.18);text-align:center}.stat-box strong{font-size:1.25rem;display:block}
+.word-tag{font-size:.78rem;background:rgba(255,43,214,.18);padding:5px 8px;border-radius:999px;color:#ffd5f7;font-weight:600}
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:12px;max-height:70vh;overflow-y:auto;padding-right:6px;scroll-behavior:smooth}
+.word-item{padding:12px;border-radius:12px;border:1px solid rgba(0,240,255,.16);display:grid;gap:8px;background:linear-gradient(180deg,#0d1426,#0a1020)}
+.mini{padding:6px 9px;border-radius:8px;cursor:pointer;font-size:.8rem;background:rgba(0,240,255,.12);color:#c8f7ff;font-weight:600;margin-right:6px}
+.flash-wrap{perspective:none;margin-top:12px}
+.flashcard{min-height:250px;position:relative;transition:none;cursor:default}
+.face{position:relative;inset:auto;border-radius:14px;padding:16px;border:1px solid rgba(0,240,255,.25);background:linear-gradient(135deg,rgba(0,240,255,.12),rgba(17,26,47,.92));display:flex;flex-direction:column;justify-content:center;gap:10px;box-shadow:0 0 0 1px rgba(255,43,214,.18)}
+.back{display:none}
+.quiz-options{margin-top:10px;display:grid;gap:8px}.quiz-option{border:1px solid rgba(0,240,255,.25);background:transparent;color:var(--text);padding:10px;border-radius:10px;cursor:pointer;text-align:left}
+.quiz-option.correct{border-color:var(--ok);background:rgba(17,212,122,.14)}.quiz-option.wrong{border-color:var(--danger);background:rgba(255,77,109,.14)}
+.status{min-height:1.2rem;color:var(--muted);font-size:.9rem}.saved-list{max-height:420px;overflow:auto;padding-right:4px;gap:10px;margin-top:6px}
+.saved-item{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid rgba(0,240,255,.15);border-radius:10px;padding:10px}.saved-item > div{display:flex;align-items:center;gap:8px}
+footer{grid-column:1/-1;text-align:center;color:var(--muted);font-size:.86rem;padding-bottom:16px}
+#lookupResult{margin-top:8px;gap:10px}#lookupResult .word-row{gap:10px;margin-bottom:2px}#lookupResult p{line-height:1.45}#lookupResult .word-row .mini:first-of-type{margin-left:8px}#lookupResult .word-row .mini{margin-right:6px}.loading{display:inline-block;width:16px;height:16px;border-radius:50%;border:2px solid rgba(0,240,255,.25);border-top-color:var(--accent);animation:spin .8s linear infinite;vertical-align:middle;margin-left:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:980px){.app{grid-template-columns:1fr}header{position:static}aside{order:2}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="topbar"><div class="logo">Wordify | B1-C2 Vocabulary Studio</div><div class="controls" role="group" aria-label="Controls"><button class="chip active" data-level="ALL">All</button><button class="chip" data-level="B1">B1</button><button class="chip" data-level="B2">B2</button><button class="chip" data-level="C1">C1</button><button class="chip" data-level="C2">C2</button><input id="searchInput" type="search" placeholder="Search any word..." /><button id="themeToggle" class="btn secondary">Dark Mode</button></div></div></header>
+<main class="layout">
+<section class="card"><div class="title-row"><h2>Word of the Day</h2><div><button class="mini" id="shareDailyBtn">Share</button><button class="mini" id="speakDailyBtn">Speak Sentence</button></div></div><div id="dailyWordBox" class="daily-word"></div><div class="stats"><div class="stat-box"><strong id="learnedCount">0</strong><span class="muted">Learned</span></div><div class="stat-box"><strong id="streakCount">0</strong><span class="muted">Streak</span></div><div class="stat-box"><strong id="savedCount">0</strong><span class="muted">Saved</span></div></div></section>
+<section class="card"><div class="title-row"><h2>Flashcard Mode</h2><div><button class="mini" id="nextCardBtn">Next Card</button><button class="mini" id="markLearnedBtn">Mark Learned</button></div></div><div class="flash-wrap"><div id="flashcard" class="flashcard"><div class="face front" id="frontFace"></div></div><p class="muted">Single view mode: details are shown directly on the same card.</p></div></section>
+<section class="card"><div class="title-row"><h2>Quiz Mode</h2><button class="mini" id="newQuizBtn">New Question</button></div><p id="quizPrompt"></p><div id="quizOptions" class="quiz-options"></div><p id="quizStatus" class="status" aria-live="polite"></p></section>
+<section class="card"><div class="title-row"><h2>Browse Vocabulary</h2><select id="sortSelect"><option value="az">A-Z</option><option value="za">Z-A</option><option value="struggle">Most Struggled</option></select></div><p class="muted">Definitions/examples load from Free Dictionary API. Vocabulary list is loaded online only.</p><div id="wordList" class="word-grid"></div></section>
+</main>
+<aside>
+<section class="card"><div class="title-row"><h2>My Saved Words</h2><button class="mini" id="clearSavedBtn">Clear</button></div><div id="savedList" class="saved-list"></div></section>
+<section class="card"><h2>Word Lookup</h2><p class="muted">Search above and press Enter for detailed lookup.</p><div id="lookupResult" class="daily-word"></div></section>
+</aside>
+<footer>Built for browser-only learning. Vocabulary list from Datamuse API and <a href="https://api.dictionaryapi.dev/api/v2/entries/en/test" target="_blank" rel="noreferrer">Free Dictionary API</a>. Wordify is a static web app.</footer>
+</div>
+<script>
+const K={theme:"wordify_theme",saved:"wordify_saved",learned:"wordify_learned",streak:"wordify_streak",last:"wordify_last_visit",struggle:"wordify_struggle"};
+const ONLINE_WORD_API="https://api.datamuse.com/words?sp=*&max=1000&md=f";
+function levelFromFreq(f){
+  if(f>=4.8) return "B1";
+  if(f>=4.2) return "B2";
+  if(f>=3.6) return "C1";
+  return "C2";
+}
+async function loadOnlineWordBank(){
+  try{
+    const r=await fetch(ONLINE_WORD_API);
+    if(!r.ok) throw new Error("word api failed");
+    const rows=await r.json();
+    const m=new Map();
+    rows.forEach(row=>{
+      const w=(row.word||"").toLowerCase();
+      if(!/^[a-z-]{4,16}$/.test(w)) return;
+      const fTag=(row.tags||[]).find(t=>String(t).startsWith("f:"));
+      const freq=fTag?parseFloat(String(fTag).slice(2)):3.8;
+      if(!Number.isFinite(freq)) return;
+      if(!m.has(w) || m.get(w).freq<freq) m.set(w,{word:w,freq});
+    });
+    return [...m.values()].map(x=>({word:x.word,level:levelFromFreq(x.freq)}));
+  }catch{
+    return [];
+  }
+}
+const S={level:"ALL",sort:"az",words:[],cache:{},flash:null,dark:false,daily:null,quiz:null};
+const E={search:document.getElementById("searchInput"),list:document.getElementById("wordList"),daily:document.getElementById("dailyWordBox"),theme:document.getElementById("themeToggle"),saved:document.getElementById("savedList"),savedCount:document.getElementById("savedCount"),learnedCount:document.getElementById("learnedCount"),streakCount:document.getElementById("streakCount"),flash:document.getElementById("flashcard"),front:document.getElementById("frontFace"),next:document.getElementById("nextCardBtn"),mark:document.getElementById("markLearnedBtn"),sort:document.getElementById("sortSelect"),qPrompt:document.getElementById("quizPrompt"),qOpts:document.getElementById("quizOptions"),qStatus:document.getElementById("quizStatus"),newQ:document.getElementById("newQuizBtn"),lookup:document.getElementById("lookupResult"),clear:document.getElementById("clearSavedBtn"),share:document.getElementById("shareDailyBtn"),speakDaily:document.getElementById("speakDailyBtn")};
+const st={get:(k,f)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch{return f}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+const uniq=a=>{const s=new Set;return a.filter(x=>{const k=`${x.word}:${x.level}`;if(s.has(k))return false;s.add(k);return true})};
+const saved=()=>st.get(K.saved,[]),learned=()=>st.get(K.learned,[]),struggle=()=>st.get(K.struggle,{}),rand=a=>a[Math.floor(Math.random()*a.length)];
+function updateStreak(){const t=new Date().toISOString().slice(0,10),last=localStorage.getItem(K.last);let v=st.get(K.streak,0);if(!last)v=1;else if(last!==t){const d=Math.floor((new Date(t)-new Date(last))/86400000);v=d===1?v+1:1}localStorage.setItem(K.last,t);st.set(K.streak,v)}
+const fallback=w=>({word:w,phonetic:"",audio:"",definition:"Definition unavailable from API. Keep practicing.",example:`Try using \"${w}\" in a sentence.`,synonyms:[],antonyms:[]});
+async function dict(w){const k=w.toLowerCase();if(S.cache[k])return S.cache[k];try{const r=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(w)}`);if(!r.ok)throw 0;const d=await r.json(),i=d[0]||{},m=(i.meanings||[])[0]||{},df=(m.definitions||[])[0]||{},ph=(i.phonetics||[]).find(p=>p.audio)||(i.phonetics||[])[0]||{};return S.cache[k]={word:i.word||w,phonetic:i.phonetic||ph.text||"",audio:ph.audio||"",definition:df.definition||"No API definition.",example:df.example||"No API example.",synonyms:[...new Set([...(df.synonyms||[]),...(m.synonyms||[])])].slice(0,5),antonyms:[...new Set([...(df.antonyms||[]),...(m.antonyms||[])])].slice(0,5)}}catch{return S.cache[k]=fallback(w)}}
+function speak(t){if(!window.speechSynthesis)return;const u=new SpeechSynthesisUtterance(t);u.lang="en-US";speechSynthesis.cancel();speechSynthesis.speak(u)}
+function audioOrSpeak(url,text){if(url){const a=new Audio(url);a.play().catch(()=>speak(text))}else speak(text)}
+function theme(){S.dark=(localStorage.getItem(K.theme)||"light")==="dark";document.body.classList.toggle("dark",S.dark);E.theme.textContent=S.dark?"Light Mode":"Dark Mode"}
+function stats(){E.savedCount.textContent=saved().length;E.learnedCount.textContent=learned().length;E.streakCount.textContent=st.get(K.streak,0)}
+async function daily(){if(!S.words.length){E.daily.innerHTML="<p class='muted'>No online vocabulary available right now.</p>";return}const i=Math.floor(Date.now()/86400000)%S.words.length,w=S.words[i];S.daily=w;E.daily.innerHTML="<div class='muted'>Loading <span class='loading'></span></div>";const d=await dict(w.word);E.daily.innerHTML=`<div class='word-row'><h3>${d.word}</h3><span class='word-tag'>${w.level}</span>${d.phonetic?`<span class='muted'>${d.phonetic}</span>`:""}</div><p><strong>Definition:</strong> ${d.definition}</p><p><strong>Example:</strong> ${d.example}</p><div class='actions'><button class='mini' data-speak='${d.word}'>Pronounce</button><button class='mini' data-add='${d.word}'>Add to My List</button></div>`}
+function filtered(){let a=[...S.words];if(S.level!=="ALL")a=a.filter(x=>x.level===S.level);const q=E.search.value.trim().toLowerCase();if(q)a=a.filter(x=>x.word.includes(q));const m=struggle();if(S.sort==="az")a.sort((a,b)=>a.word.localeCompare(b.word));if(S.sort==="za")a.sort((a,b)=>b.word.localeCompare(a.word));if(S.sort==="struggle")a.sort((a,b)=>(m[b.word]||0)-(m[a.word]||0));return a}
+async function grid(){const a=filtered().slice(0,60);if(!a.length){E.list.innerHTML="<p class='muted'>No words match this filter.</p>";return}E.list.innerHTML=a.map(x=>`<article class='word-item'><div class='word-row'><strong>${x.word}</strong><span class='word-tag'>${x.level}</span></div><div class='actions'><button class='mini' data-detail='${x.word}'>Definition</button><button class='mini' data-speak='${x.word}'>Audio</button><button class='mini' data-add='${x.word}'>Add</button></div><div id='detail-${x.word}' class='muted' style='font-size:.85rem'></div></article>`).join("")}
+function renderSaved(){const a=saved();if(!a.length){E.saved.innerHTML="<p class='muted'>No saved words yet.</p>";return}E.saved.innerHTML=a.map(w=>`<div class='saved-item'><span>${w}</span><div><button class='mini' data-speak='${w}'>Speak</button><button class='mini' data-remove='${w}'>Remove</button></div></div>`).join("")}
+async function flash(){const a=filtered();if(!a.length){E.front.innerHTML="<h3>No words</h3><p>Change filter/search.</p>";return}const m=struggle(),pool=[];a.forEach(x=>{for(let i=0;i<Math.max(1,(m[x.word]||0)+1);i++)pool.push(x)});const pick=rand(pool);S.flash=pick;const d=await dict(pick.word);E.front.innerHTML=`<div class='word-tag'>${pick.level}</div><h3 style='font-size:2rem'>${d.word}</h3><p><strong>Definition:</strong> ${d.definition}</p><p><strong>Example:</strong> ${d.example}</p>${d.synonyms.length?`<p><strong>Synonyms:</strong> ${d.synonyms.join(", ")}</p>`:""}${d.antonyms.length?`<p><strong>Antonyms:</strong> ${d.antonyms.join(", ")}</p>`:""}<div class='actions'><button class='mini' data-speak='${d.word}'>Pronounce</button><button class='mini' data-add='${d.word}'>Add</button></div>`}
+function quiz(){const a=filtered();if(a.length<4){E.qPrompt.textContent="Need at least 4 words in the active filter for quiz.";E.qOpts.innerHTML="";return}const t=rand(a),o=[...a].filter(x=>x.word!==t.word).sort(()=>Math.random()-.5).slice(0,3);S.quiz={target:t,options:[t,...o].sort(()=>Math.random()-.5),done:false};E.qPrompt.textContent=`Choose the closest meaning for: ${t.word}`;E.qOpts.innerHTML="<div class='muted'>Loading <span class='loading'></span></div>";E.qStatus.textContent="";Promise.all(S.quiz.options.map(x=>dict(x.word))).then(defs=>E.qOpts.innerHTML=defs.map((d,i)=>`<button class='quiz-option' data-q='${i}'>${d.definition}</button>`).join(""))}
+function setStruggle(w){const m=struggle();m[w]=(m[w]||0)+1;st.set(K.struggle,m)}
+function add(w){const a=saved();if(!a.includes(w)){a.unshift(w);st.set(K.saved,a)}renderSaved();stats()}
+function remove(w){st.set(K.saved,saved().filter(x=>x!==w));renderSaved();stats()}
+function mark(w){const a=learned();if(!a.includes(w)){a.push(w);st.set(K.learned,a)}stats()}
+async function lookup(w){const q=w.trim().toLowerCase();if(!q)return;E.lookup.innerHTML="<div class='muted'>Searching <span class='loading'></span></div>";const d=await dict(q);E.lookup.innerHTML=`<div class='word-row'><h3>${d.word}</h3>${d.phonetic?`<span class='muted'>${d.phonetic}</span>`:""}<button class='mini' data-speak='${d.word}'>Pronounce</button><button class='mini' data-add='${d.word}'>Add to My List</button></div><p><strong>Definition:</strong> ${d.definition}</p><p><strong>Example:</strong> ${d.example}</p>${d.synonyms.length?`<p><strong>Synonyms:</strong> ${d.synonyms.join(", ")}</p>`:""}${d.antonyms.length?`<p><strong>Antonyms:</strong> ${d.antonyms.join(", ")}</p>`:""}`}
+function bind(){document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");S.level=b.dataset.level;grid();flash();quiz()}));E.search.addEventListener("input",grid);E.search.addEventListener("keydown",e=>{if(e.key==="Enter")lookup(E.search.value)});E.theme.addEventListener("click",()=>{S.dark=!S.dark;document.body.classList.toggle("dark",S.dark);localStorage.setItem(K.theme,S.dark?"dark":"light");E.theme.textContent=S.dark?"Light Mode":"Dark Mode"});E.sort.addEventListener("change",()=>{S.sort=E.sort.value;grid()});E.next.addEventListener("click",flash);E.mark.addEventListener("click",()=>S.flash&&mark(S.flash.word));E.newQ.addEventListener("click",quiz);E.qOpts.addEventListener("click",e=>{const b=e.target.closest("[data-q]");if(!b||!S.quiz||S.quiz.done)return;S.quiz.done=true;const c=S.quiz.options[+b.dataset.q],ok=c.word===S.quiz.target.word;document.querySelectorAll(".quiz-option").forEach((o,i)=>{const w=S.quiz.options[i].word;if(w===S.quiz.target.word)o.classList.add("correct");else if(i===+b.dataset.q)o.classList.add("wrong")});if(ok){E.qStatus.textContent="Correct. Great recall.";mark(c.word)}else{E.qStatus.textContent=`Not quite. Correct answer: ${S.quiz.target.word}`;setStruggle(S.quiz.target.word)}});E.list.addEventListener("click",async e=>{const d=e.target.closest("[data-detail]"),sp=e.target.closest("[data-speak]"),a=e.target.closest("[data-add]");if(d){const w=d.dataset.detail,t=document.getElementById(`detail-${w}`);t.innerHTML="Loading...";const x=await dict(w);t.innerHTML=`${x.definition}<br><em>${x.example}</em>`}if(sp){const w=sp.dataset.speak,x=await dict(w);audioOrSpeak(x.audio,w)}if(a)add(a.dataset.add)});document.body.addEventListener("click",async e=>{const sp=e.target.closest("[data-speak]"),a=e.target.closest("[data-add]"),r=e.target.closest("[data-remove]");if(sp&&!sp.closest("#wordList")){const w=sp.dataset.speak,x=await dict(w);audioOrSpeak(x.audio,w)}if(a&&!a.closest("#wordList"))add(a.dataset.add);if(r)remove(r.dataset.remove)});E.clear.addEventListener("click",()=>{st.set(K.saved,[]);renderSaved();stats()});E.share.addEventListener("click",async()=>{if(!S.daily)return;const d=await dict(S.daily.word),txt=`Word of the Day: ${d.word} - ${d.definition}`;if(navigator.share)navigator.share({title:"Wordify Word of the Day",text:txt}).catch(()=>{});else navigator.clipboard.writeText(txt).then(()=>alert("Copied to clipboard for sharing.")).catch(()=>alert(txt))});E.speakDaily.addEventListener("click",async()=>{if(!S.daily)return;const d=await dict(S.daily.word);speak(d.example||`Today word is ${d.word}`)})}
+async function init(){updateStreak();theme();bind();stats();E.list.innerHTML="<p class='muted'>Loading online vocabulary...</p>";S.words=uniq(await loadOnlineWordBank());if(!S.words.length){E.daily.innerHTML="<p class='muted'>Online vocabulary API unavailable.</p>";E.list.innerHTML="<p class='muted'>Could not load words from online API. Please retry later.</p>";E.front.innerHTML="<h3>No words</h3><p>Online API unavailable.</p>";E.qPrompt.textContent="Quiz unavailable until online words load.";renderSaved();return;}await Promise.all([daily(),grid(),renderSaved(),flash()]);quiz()}init();
+</script>
+</body>
+</html>
+
+
